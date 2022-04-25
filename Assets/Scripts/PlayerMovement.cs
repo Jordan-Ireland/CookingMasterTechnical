@@ -41,6 +41,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 input = new Vector2(Horizontal, Vertical);
-        rb.velocity = input * 10;
+        rb.velocity = input * 5;
     }
 }
