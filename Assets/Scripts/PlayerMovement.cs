@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public KeyCode up, down, left, right;
+    public KeyCode up, down, left, right, interact;
     float Vertical
     {
         get
@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     }
     Rigidbody2D rb;
 
+    public bool canMove = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 input = new Vector2(Horizontal, Vertical);
-        rb.velocity = input * 5;
+        if (canMove)
+        {
+            Vector2 input = new Vector2(Horizontal, Vertical);
+            rb.velocity = input * 5;
+        }else
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 }

@@ -52,6 +52,27 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    public Sprite GetSprite(Vegetables _veg)
+    {
+        Sprite _sprite = null;
+        switch (_veg)
+        {
+            case Vegetables.None:
+                break;
+            case Vegetables.Lettuce:
+                _sprite = lettuceSprite;
+                break;
+            case Vegetables.Tomato:
+                _sprite = tomatoSprite;
+                break;
+            case Vegetables.Onion:
+                _sprite = onionSprite;
+                break;
+        }
+
+        return _sprite;
+    }
+
     void UpdateUI()
     {
         p1TimeUI.text = $"Time {(int)p1TimeValue}";

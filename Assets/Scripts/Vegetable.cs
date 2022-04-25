@@ -5,19 +5,34 @@ using UnityEngine;
 public class Vegetable : MonoBehaviour
 {
     public Vegetables vegetableType;
+    public Player player;
 
-    private void OnTriggerEnter2D (Collider2D other)
+    private void Update()
     {
-        Debug.Log("Wroking");
-        Player _player = other.GetComponent<Player>();
-
-        for (int i = 0; i < _player.vegetables.Length; i++)
+        if (player != null && Input.GetKeyUp(player.pm.interact) && !player.hasSalad)
         {
-            if (_player.vegetables[i].vegetable == Vegetables.None)
+            for (int i = 0; i < player.vegetables.Length; i++)
             {
-                _player.vegetables[i].AddVegetable(vegetableType);
-                break;
+                if (player.vegetables[i].vegetable == Vegetables.None)
+                {
+                    player.vegetables[i].AddVegetable(vegetableType);
+                    break;
+                }
             }
+        }
+    }
+
+    private void OnTriggerStay2D (Collider2D other)
+    {
+        player = other.GetComponent<Player>();
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Player _player = other.GetComponent<Player>();
+        if(player == _player)
+        {
+            player = null;
         }
     }
 }

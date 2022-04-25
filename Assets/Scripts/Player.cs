@@ -5,18 +5,28 @@ using UnityEngine;
 public enum Vegetables { None, Lettuce, Tomato, Onion }
 public class Player : MonoBehaviour
 {
-    public VegetableWorldObj[] vegetables = new VegetableWorldObj[2]; 
+    public VegetableWorldObj[] vegetables = new VegetableWorldObj[2];
+    public PlayerMovement pm;
+    public bool hasSalad = false;
+    public SpriteRenderer saladRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pm = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void RemoveVegetable()
+    {
+        vegetables[0].RemoveVegetable();
+        vegetables[0].AddVegetable(vegetables[1].vegetable);
+        vegetables[1].RemoveVegetable();
     }
 }
 
@@ -28,21 +38,7 @@ public struct VegetableWorldObj
 
     public void AddVegetable(Vegetables _veg)
     {
-        Sprite _sprite = null;
-        switch (_veg)
-        {
-            case Vegetables.None:
-                break;
-            case Vegetables.Lettuce:
-                _sprite = GameManager.instance.lettuceSprite;
-                break;
-            case Vegetables.Tomato:
-                _sprite = GameManager.instance.tomatoSprite;
-                break;
-            case Vegetables.Onion:
-                _sprite = GameManager.instance.onionSprite;
-                break;
-        }
+        Sprite _sprite = GameManager.instance.GetSprite(_veg);
         spriteRend.sprite = _sprite;
         vegetable = _veg;
     }
