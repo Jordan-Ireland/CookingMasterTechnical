@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     Rigidbody2D rb;
+    public float movementMultiplier = 1;
+    float timeSince = 0;
 
     public bool canMove = true;
 
@@ -45,10 +47,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (movementMultiplier > 1)
+        {
+            timeSince += Time.deltaTime;
+            if (timeSince >= 15)
+            {
+                movementMultiplier = 1;
+            }
+        }
+
         if (canMove)
         {
             Vector2 input = new Vector2(Horizontal, Vertical);
-            rb.velocity = input * 5;
+            rb.velocity = input * 5 * movementMultiplier;
         }else
         {
             rb.velocity = Vector2.zero;
