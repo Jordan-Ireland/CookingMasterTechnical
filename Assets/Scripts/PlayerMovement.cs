@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// class to hold player movement
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     public KeyCode up, down, left, right, interact;

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vegetable : MonoBehaviour
+//class for the vegetable table
+public class VegetableTable : Interactable
 {
     public Vegetables vegetableType;
-    public Player player;
 
     private void Update()
     {
@@ -19,20 +19,6 @@ public class Vegetable : MonoBehaviour
                     break;
                 }
             }
-        }
-    }
-
-    private void OnTriggerStay2D (Collider2D other)
-    {
-        player = other.GetComponent<Player>();
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        Player _player = other.GetComponent<Player>();
-        if(player == _player)
-        {
-            player = null;
         }
     }
 }
